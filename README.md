@@ -39,3 +39,19 @@ __−cos(A,P)+cos(A,N)≤0__
 Note that if __cos(A,P) = 1__ and __cos(A,N) = -1__ then the equation is definitely less than 0. However, as cos(A,P) deviates from 1 and cos(A,N) deviates from -1, then you can end up getting a cost that is > 0. Here is a visualization that would help you understand what is going on. Feel free to play with different numbers.
 
 ![](https://lh3.googleusercontent.com/keep-bbsk/AGk0z-O2bRH27eBfjSjKVcf1nCXLskP93tAfDIblZJvxDtzUl8Ue594cjtmOpLoXV2nKemd8eZ8Ad-HYMGPRyU0yQqY0LoNlFgw0XZWz-0k)
+
+# Triplets
+
+We will now build on top of our previous cost function. To get the full cost function you will add a margin.
+
+![](https://lh3.googleusercontent.com/keep-bbsk/AGk0z-OR-X8_XqZS6Kih_TW7IfuoSz0VdN1I6d7fgoZcXeiZvbw54M2CvpqZ3lVCTUAUl05hxuJV3K4LwZAjX2DetAJdEC9y7MLJhdp3rEs)
+
+Note that we added an α in the equation above. This allows you to have a margin of "safety".  When computing the full cost, we take the max of that the outcome of __−cos(A,P)+cos(A,N)+α and 0__ . Note, we do not want to take a negative number as a cost.
+
+Here is a quick summary:
+
+* 𝜶: controls how far cos(A,P) is from cos(A,N)
+* Easy negative triplet: cos(A,N) < cos(A,P)
+* Semi-hard negative triplet:  cos(A,N) < cos(A,P) < cos(A,N) + 𝜶 
+* Hard negative triplet: cos(A,P) < cos(A,N)
+
