@@ -34,11 +34,8 @@ Let us take a close look at the following slide:
 
 Note that when trying to compute the cost for a siamese network we use the triplet loss. The triplet loss usually consists of an Anchor and a Positive example. Note that the anchor and the positive example have a cosine similarity score that is very close to one. On the other hand, the anchor and the negative example have a cosine similarity score close to -1. Now we are ideally trying to optimize the following equation:
 
-$−cos(A,P)+cos(A,N)≤0 $
+__−cos(A,P)+cos(A,N)≤0__
 
-Note that if
-cos(A,P) = 1
-and
-cos(A,N) = -1 then the equation is definitely less than 0. However, as cos(A,P) deviates from 1 and cos(A,N) deviates from -1, then you can end up getting a cost that is > 0. Here is a visualization that would help you understand what is going on. Feel free to play with different numbers.
+Note that if __cos(A,P) = 1__ and __cos(A,N) = -1__ then the equation is definitely less than 0. However, as cos(A,P) deviates from 1 and cos(A,N) deviates from -1, then you can end up getting a cost that is > 0. Here is a visualization that would help you understand what is going on. Feel free to play with different numbers.
 
 ![](https://lh3.googleusercontent.com/keep-bbsk/AGk0z-O2bRH27eBfjSjKVcf1nCXLskP93tAfDIblZJvxDtzUl8Ue594cjtmOpLoXV2nKemd8eZ8Ad-HYMGPRyU0yQqY0LoNlFgw0XZWz-0k)
