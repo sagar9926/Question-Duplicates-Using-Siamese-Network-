@@ -94,7 +94,7 @@ Imagine you are working in a bank and you need to verify the signature of a chec
 
 Hence, we resort to one shot learning. Instead of retraining your model for every signature, you can just learn a similarity score as follows:
 
-![https://lh3.googleusercontent.com/keep-bbsk/AGk0z-MyztOs8-fe4p0Dq8bMHPqRhKWtpfFOfPzzYa2syxKNHoLbsPBTXnJZBjVw-dz-d5XEUejHmwWWbed36fenETPxi88wnU2rFvW9kHQ] 
+![](https://lh3.googleusercontent.com/keep-bbsk/AGk0z-MyztOs8-fe4p0Dq8bMHPqRhKWtpfFOfPzzYa2syxKNHoLbsPBTXnJZBjVw-dz-d5XEUejHmwWWbed36fenETPxi88wnU2rFvW9kHQ)
 
 # Training / Testing
 
