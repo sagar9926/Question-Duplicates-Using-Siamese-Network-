@@ -4,7 +4,7 @@ Siamese neural network is a class of neural network architectures that contain t
 
 It is best to describe what a Siamese network is through an example.
 
-!()[https://lh5.googleusercontent.com/mq5rono3IYQ-TJTvtt8IFDlukh2quL90ts4CXb36Do8EmHrqVBu-nHywgLIrboUd-0LUPYLjSaPJKmP7MTcXauiaefKIYCKjkvMYdDbVe51R3VMOlEuu7v-VP3D2yHqPzwBumj9s]
+![](https://lh5.googleusercontent.com/mq5rono3IYQ-TJTvtt8IFDlukh2quL90ts4CXb36Do8EmHrqVBu-nHywgLIrboUd-0LUPYLjSaPJKmP7MTcXauiaefKIYCKjkvMYdDbVe51R3VMOlEuu7v-VP3D2yHqPzwBumj9s)
 Note that in the first example above, the two sentences mean the same thing but have completely different words. While in the second case, the two sentences mean completely different things but they have very similar words.
 Classification: learns what makes an input what it is.
 Siamese Networks: learns what makes two inputs the same
