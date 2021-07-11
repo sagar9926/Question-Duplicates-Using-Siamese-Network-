@@ -33,7 +33,9 @@ Let us take a close look at the following slide:
 
 
 Note that when trying to compute the cost for a siamese network we use the triplet loss. The triplet loss usually consists of an Anchor and a Positive example. Note that the anchor and the positive example have a cosine similarity score that is very close to one. On the other hand, the anchor and the negative example have a cosine similarity score close to -1. Now we are ideally trying to optimize the following equation:
-−cos(A,P)+cos(A,N)≤0
+
+$−cos(A,P)+cos(A,N)≤0 $
+
 Note that if
 cos(A,P) = 1
 and
