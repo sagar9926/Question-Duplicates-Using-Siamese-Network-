@@ -55,3 +55,61 @@ Here is a quick summary:
 * Semi-hard negative triplet:  cos(A,N) < cos(A,P) < cos(A,N) + 𝜶 
 * Hard negative triplet: cos(A,P) < cos(A,N)
 
+# Computing the Cost
+
+To compute the cost, we will prepare the batches as follows:
+![](https://lh3.googleusercontent.com/keep-bbsk/AGk0z-N7bJkj4ZuAaEBlxK-lvykLfGsw6aWFgGEFnUbQi5MXnAeTko7P2mLR1tJQsUoew6-xFCNh4iUmSDbuhxt7OSpQZoWjyvE62Ybm0y4)
+
+Note that each example, has a similar example to its right, but no other example means the same thing. We will now introduce hard negative mining.
+
+![](https://lh3.googleusercontent.com/keep-bbsk/AGk0z-MiDxzsaIxEZVxKQ_cy1_HQtRSXljjh9k_sPNwTaS4uNk3Vu4XV10a4knzrN0VqxozzVZNP6QHRvA61iSOYIOLEtik1jwszyFiALJE)
+
+Each horizontal vector corresponds to the encoding of the corresponding question. Now when you multiply the two matrices and compute the cosine, you get the following:
+
+![](https://lh3.googleusercontent.com/keep-bbsk/AGk0z-Ol0JU9NbwaTP3pKT3onNktyambx0NvvJETK87U0ZZwBonv5Vgh8XuhfC0Q2A1BgAgXUwOshenTAGltCLPyNzRnZKPe_Nr6WZCtquo)
+
+The diagonal line corresponds to scores of similar sentences, (normally they should be positive). The off-diagonals correspond to cosine scores between the anchor and the negative examples.
+
+Now that you have the matrix with cosine similarity scores, which is the product of two matrices, we go ahead and compute the cost.
+
+![](https://lh3.googleusercontent.com/keep-bbsk/AGk0z-OGP_OLQg8UfjHwcxt1StKGodkFywQjTNgZfEKQz7lINWiNhe0h7k-PsupXXyLXdj8CLUFd7GR14pmzbzbxXJECddeOJgllfesgyKo)
+
+We now introduce two concepts, the mean_neg, which is the mean negative of all the other off diagonals in the row, and the closest_neg, which corresponds to the highest number in the off diagonals.
+
+__Cost = max(−cos(A,P)+cos(A,N)+α,0)__
+
+So we will have two costs now:
+
+__Cost1 = max(−cos(A,P) + meanneg) + α , 0)__
+
+__Cost2 = max(−cos(A,P) + closestneg + α , 0)__
+
+The full cost is defined as: __Cost 1 + Cost 2.__
+
+# One Shot Learning
+
+Imagine you are working in a bank and you need to verify the signature of a check. You can either build a classifier with K possible signatures as an output or you can build a classifier that tells you whether two signatures are the same.
+
+![](https://lh3.googleusercontent.com/keep-bbsk/AGk0z-OWkAnaBbsYGw4sgtOK690X4WRpHle_ZWABWmyB1PE7HxE13Xdji536lURjB4HlpNcyuKoF8iAyv0qKuBLs3I71uEfBwsICJQAA5rM)
+
+Hence, we resort to one shot learning. Instead of retraining your model for every signature, you can just learn a similarity score as follows:
+
+![https://lh3.googleusercontent.com/keep-bbsk/AGk0z-MyztOs8-fe4p0Dq8bMHPqRhKWtpfFOfPzzYa2syxKNHoLbsPBTXnJZBjVw-dz-d5XEUejHmwWWbed36fenETPxi88wnU2rFvW9kHQ] 
+
+# Training / Testing
+
+After preparing the batches of vectors, you can proceed to multiplying the two matrices. Here is a quick recap of the first step:
+
+![](https://lh5.googleusercontent.com/lrZLjl-bWE7D5w72bPKBDTkM8vfxnaKo0ThJbv3Ys3AfUcsgwMLZv98dYHxd69ko31crjug-yivlk8iBom1HnFVhhJS7DiT0O0_BSRTnpcNpPTsE-xb4azOcOoc9wXcLWiu7zgfK)
+
+The next step is to implement the siamese model as follows:
+
+![](https://lh6.googleusercontent.com/5BJXNkYw7KuJTJJVx6fhCBKvS2GFwAozUESLS4BaUULQFf5x2XMivI1UGmh13nzNk8-N0EybPhho05hmZUcbSyEub2OVsG-GGq5H_yCJ2HxE_9-fvijlhaIMKUaTtMrYOnyvHWK-)
+
+__Finally when testing:__
+* Convert two inputs into an array of numbers
+* Feed it into your model
+* Compare 𝒗1,𝒗2 using cosine similarity
+* Test against a threshold τ
+
+
